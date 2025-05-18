@@ -1,0 +1,213 @@
+/* 🎨 Light & Dark Theme Variables */
+:root {
+  --bg-color: #fff;
+  --btn-bg: #0987f2;
+  --btn-text: #fff;
+  --card-bg: #ffffff00;
+  --text-color: #222;
+  --form-text: #555;
+  --footer-text: #888;
+}
+
+[data-theme="dark"] {
+  --bg-color: #222;
+  --btn-bg: #fff;
+  --btn-text: #222;
+  --card-bg: #fff;
+  --text-color: #fff;
+  --form-text: #fff;
+  --footer-text: #bbb;
+}
+
+/* 🖥️ Global Styles */
+body {
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 60px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* 📝 Text Styles */
+h1, h2, h3, p, ul, a {
+  color: var(--text-color);
+  font-family: "Roboto Mono", monospace;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: "Rubik", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  white-space: nowrap;       
+  /* overflow: hidden; */
+}
+
+h2, h3 {
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.sectionTitle {
+  margin-bottom: 30px;
+}
+
+/* 🖱️ Buttons */
+button {
+  /* background-color: var(--btn-bg); */
+  color: var(--btn-text);
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* 📌 Project Image Hover Effect */
+.project-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.project-image-container img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.project-image-container:hover img {
+  transform: scale(1.05);
+}
+
+.project-description {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.project-image-container:hover .project-description {
+  opacity: 1;
+}
+
+/* 🏹 Swiper Navigation Arrows */
+.swiper-button-prev,
+.swiper-button-next {
+  color: white !important;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0; /* Hide by default */
+}
+
+.swiper:hover .swiper-button-prev,
+.swiper:hover .swiper-button-next {
+  opacity: 1; /* Show on hover */
+}
+
+/* 🎨 Gradient Animation */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background: linear-gradient(90deg, red, green, blue);
+  background-size: 300% 300%;
+  animation: gradient 3s infinite;
+}
+
+/* 🌈 Color Changing Animation */
+@keyframes colorchange {
+  0% { color: rgb(255, 0, 0); }  
+  25% { color: rgb(0, 255, 0); }  
+  50% { color: rgb(0, 0, 255); }  
+  75% { color: rgb(255, 255, 0); }  
+  100% { color: rgb(255, 0, 0); }  
+}
+
+.text-animate {
+  animation: colorchange 3s infinite;
+}
+
+
+/* Cursor blinking animation */
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+
+
+/* 📱 Responsive Styles */
+@media (min-width: 800px) {
+  #root { gap: 100px; }
+  h1 { font-size: 40px; }
+  h2, h3 { font-size: 24px; }
+  p { font-size: 20px; }
+  .sectionTitle { margin-bottom: 60px; }
+}
+
+@media (min-width: 1400px) {
+  #root { gap: 100px; }
+  h1 { font-size: 48px; }
+  .sectionTitle { margin-bottom: 75px; }
+}
+
+
+@media (max-width: 640px) {
+  .swiper-container {
+    display: none !important; /* Hide Swiper on Mobile */
+  }
+  .project-grid {
+    display: grid !important;
+    grid-template-columns: 1fr; /* Stack Projects */
+    gap: 16px;
+  }
+}
+
+@media (min-width: 641px) {
+  .project-grid {
+    display: none !important; /* Hide Grid on Large Screens */
+  }
+  .swiper-container {
+    display: block !important; /* Show Swiper */
+  }
+}
